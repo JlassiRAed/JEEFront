@@ -35,6 +35,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SeanceComponent } from './seance/seance.component';
 import { SalleComponent } from './salle/salle.component';
+import { CompteComponent } from './compte/compte.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { SalleComponent } from './salle/salle.component';
     NotfoundComponent,
     FilmsComponent,
     SeanceComponent,
-    SalleComponent
+    SalleComponent,
+    CompteComponent
   ],
   imports: [
     BrowserModule,
