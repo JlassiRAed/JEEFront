@@ -11,7 +11,6 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ButtonModule } from 'primeng/button';
-import { CatalogeComponent } from './cataloge/cataloge.component';
 
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
@@ -35,6 +34,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SeanceComponent } from './seance/seance.component';
 import { SalleComponent } from './salle/salle.component';
+import { SalleprogComponent } from './salleprog/salleprog.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ListboxModule } from 'primeng/listbox';
+//import { SelectModule } from 'primeng/select';
 
 
 @NgModule({
@@ -43,13 +46,13 @@ import { SalleComponent } from './salle/salle.component';
     NavBarComponent,
     FooterComponent,
     HomeComponent,
-    CatalogeComponent,
     AboutComponent,
     ContactComponent,
     NotfoundComponent,
     FilmsComponent,
     SeanceComponent,
-    SalleComponent
+    SalleComponent,
+    SalleprogComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,9 @@ import { SalleComponent } from './salle/salle.component';
     DialogModule,
     ConfirmPopupModule,
     ToastModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    MultiSelectModule,
+    ListboxModule
 
   ],
   providers: [
