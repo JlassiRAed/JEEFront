@@ -60,7 +60,7 @@ export class SalleprogComponent implements OnInit {
       });
     }
     updateCondition() {
-      this.condition = !(this.selectedfilm==null && this.selectedsalle==null);
+      this.condition = (this.selectedfilm==null || this.selectedsalle==null);
     }
   
       ngOnInit() {
