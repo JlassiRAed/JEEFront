@@ -52,7 +52,7 @@ export class SalleComponent {
       }
 
 
-    updateFilm(salle:Salle): void {
+    updateSalle(salle:Salle): void {
       this.putSalle.updateFilm(salle).subscribe({
         next: (response) => {
           console.log('salle mis à jour avec succès', response);

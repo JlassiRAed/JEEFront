@@ -8,7 +8,11 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { FilmsComponent } from './films/films.component';
 import { SeanceComponent } from './seance/seance.component';
 import { SalleComponent } from './salle/salle.component';
+<<<<<<< HEAD
 import { SalleprogComponent } from './salleprog/salleprog.component';
+=======
+import { CompteComponent } from './compte/compte.component';
+>>>>>>> ahmedBranch
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, title: "Home" },
@@ -17,7 +21,11 @@ const routes: Routes = [
   { path: 'seances', component:SeanceComponent , title: "seances" },
   { path: 'contact', component:ContactComponent , title: "contact" },
   { path: 'salle', component:SalleComponent , title: "salle" },
+<<<<<<< HEAD
   { path: 'salleprog', component:SalleprogComponent , title: "salleProg" },
+=======
+  { path: 'compte', component:CompteComponent , title: "compte" },
+>>>>>>> ahmedBranch
   { path: 'notfound', component:NotfoundComponent , title: "404" },
   { path: '**', component: NotfoundComponent, title: "404" },
   
