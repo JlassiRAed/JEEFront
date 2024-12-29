@@ -23,6 +23,17 @@ import { AboutComponent } from './about/about.component';
 import { CardModule } from 'primeng/card';
 import { ContactComponent } from './contact/contact.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { FilmsComponent } from './films/films.component';
+
+import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; 
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SeanceComponent } from './seance/seance.component';
 
 
 @NgModule({
@@ -34,7 +45,9 @@ import { NotfoundComponent } from './notfound/notfound.component';
     CatalogeComponent,
     AboutComponent,
     ContactComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FilmsComponent,
+    SeanceComponent
   ],
   imports: [
     BrowserModule,
@@ -49,11 +62,18 @@ import { NotfoundComponent } from './notfound/notfound.component';
     BrowserAnimationsModule,
     DropdownModule,
     FormsModule,
-    CardModule
-    
+    CardModule,
+    TableModule,
+    CommonModule,
+    HttpClientModule,
+    DialogModule,
+    ConfirmPopupModule,
+    ToastModule,
+    OverlayPanelModule
+
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),ConfirmationService,MessageService
   ],
   bootstrap: [AppComponent]
 })

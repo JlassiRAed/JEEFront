@@ -25,18 +25,18 @@ export class AboutComponent {
     },
     { 
       name: 'Whitney Francis', 
-      role: 'Pastry chef', 
-      image: 'assets/c3.jpg' 
+      role: 'Customer Relations Manager ', 
+      image: 'assets/r3.jpg' 
     },
     { 
       name: 'Leonard Krasner', 
-      role: 'Pastry chef', 
-      image: 'assets/c2.png' 
+      role: 'Cinema Manager', 
+      image: 'assets/r4.jpg' 
     },
     { 
       name: 'Floyd Miles', 
-      role: 'Pastry chef', 
-      image: 'assets/c1.jpg' 
+      role: ' Marketing and Events Coordinator', 
+      image: 'assets/r5.jpg' 
     }
   ];
 
