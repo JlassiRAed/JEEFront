@@ -34,14 +34,14 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SeanceComponent } from './seance/seance.component';
 import { SalleComponent } from './salle/salle.component';
-<<<<<<< HEAD
+
 import { SalleprogComponent } from './salleprog/salleprog.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ListboxModule } from 'primeng/listbox';
 //import { SelectModule } from 'primeng/select';
-=======
+
 import { CompteComponent } from './compte/compte.component';
->>>>>>> ahmedBranch
+
 
 
 @NgModule({
@@ -56,11 +56,8 @@ import { CompteComponent } from './compte/compte.component';
     FilmsComponent,
     SeanceComponent,
     SalleComponent,
-<<<<<<< HEAD
-    SalleprogComponent
-=======
+    SalleprogComponent,
     CompteComponent
->>>>>>> ahmedBranch
   ],
   imports: [
     BrowserModule,
