@@ -94,7 +94,7 @@ export class FilmsComponent implements OnInit {
               this.messageService.add({
                 severity: 'error',
                 summary: 'Error',
-                detail: 'An error occurred while deleting the film.',
+                detail: 'An error occurred while deleting the film. you must delete salleprog first',
                 life: 3000,
               });
             }
