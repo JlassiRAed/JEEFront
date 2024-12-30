@@ -19,11 +19,13 @@ export class FilmsComponent implements OnInit {
   editvisible: boolean = false;
   removevisible: boolean = false; 
   filmName!: string;
+  selectedFilm: Film = { id_film: 0, nom: '' };
 
   showDialog() {
       this.visible = true;
   }
-  showDialogEdit() {
+  showDialogEdit(film: Film) {
+    this.selectedFilm = { ...film };
     this.editvisible = true;
   }
   showDialogRemove() {

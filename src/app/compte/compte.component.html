@@ -82,53 +82,10 @@
                     <div class="flex space-x-4">
                       <!-- Edit Button -->
                       <div>
-                      <button (click)="showDialogEdit()"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                      <button (click)="showDialogEdit(compte)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
                         <i class="bx bx-edit mr-2"></i> Edit
                       </button>
-                      <p-dialog header="Update Salle" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
-                        <span class="p-text-secondary block mb-8">Update compte.</span>
-                        <div class="flex flex-col gap-4 mb-4">
-                          <div class="flex items-center gap-4">
-                              <label for="username" class="font-semibold w-24">Compte nom</label>
-                              <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="compte.name"/>
-                          </div>
-                          <div class="flex items-center gap-4">
-                            <label for="password" class="font-semibold w-24">Password</label>
-                            <div class="relative flex-auto">
-                              <input
-                                [type]="isPasswordVisible ? 'text' : 'password'"
-                                id="password"
-                                class="flex-auto w-full custom-outline"
-                                autocomplete="off"
-                                [(ngModel)]="compte.password"
-                              />
-                              <button
-                                type="button"
-                                (click)="togglePasswordVisibility()"
-                                class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600"
-                              >
-                                <i [class]="isPasswordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2">
-                            <button 
-                              (click)="editvisible = false" 
-                              class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
-                            >
-                              <i class="bx bx-x-circle"></i> Cancel
-                            </button>
-                            <button 
-                              (click)="updateCompte(compte)" 
-                              class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
-                            >
-                              <i class="bx bx-save"></i> Update
-                            </button>
-                            
-                        </div>
-                      </p-dialog>
+                      
                       </div>
                       <!-- Delete Button -->
                         <div class="flex items-center gap-2">
@@ -154,4 +111,49 @@
       </table>
     </div>
 </div>
+
+<p-dialog header="Update Salle" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Update compte.</span>
+  <div class="flex flex-col gap-4 mb-4">
+    <div class="flex items-center gap-4">
+        <label for="username" class="font-semibold w-24">Compte nom</label>
+        <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedCompte.name"/>
+    </div>
+    <div class="flex items-center gap-4">
+      <label for="password" class="font-semibold w-24">Password</label>
+      <div class="relative flex-auto">
+        <input
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          id="password"
+          class="flex-auto w-full custom-outline"
+          autocomplete="off"
+          [(ngModel)]="selectedCompte.password"
+        />
+        <button
+          type="button"
+          (click)="togglePasswordVisibility()"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600"
+        >
+          <i [class]="isPasswordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="flex justify-end gap-2">
+      <button 
+        (click)="editvisible = false" 
+        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
+      >
+        <i class="bx bx-x-circle"></i> Cancel
+      </button>
+      <button 
+        (click)="updateCompte(selectedCompte)" 
+        class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
+      >
+        <i class="bx bx-save"></i> Update
+      </button>
+      
+  </div>
+</p-dialog>
 

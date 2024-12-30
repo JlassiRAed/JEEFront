@@ -51,7 +51,7 @@
                     <div class="flex space-x-4">
                       <!-- Edit Button -->
                       <div>
-                      <button (click)="showDialogEdit()"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                      <button (click)="showDialogEdit(film)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
                         <i class="bx bx-edit mr-2"></i> Edit
                       </button>
                       <p-dialog header="Update Film" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">

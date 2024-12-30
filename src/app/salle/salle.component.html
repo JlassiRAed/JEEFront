@@ -69,45 +69,9 @@
                     <div class="flex space-x-4">
                       <!-- Edit Button -->
                       <div>
-                      <button (click)="showDialogEdit()"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                      <button (click)="showDialogEdit(salle)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
                         <i class="bx bx-edit mr-2"></i> Edit
                       </button>
-                      <p-dialog header="Update Salle" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
-                        <span class="p-text-secondary block mb-8">Update salle.</span>
-                        <!-- <div class="flex items-center gap-4 mb-4">
-                            <label for="username" class="font-semibold w-24">Salle Name</label>
-                            <input pInputText id="username" class="flex-auto" autocomplete="off"  [(ngModel)]="salle.nom"/>
-                        </div> -->
-                        <div class="flex flex-col gap-4 mb-4">
-                          <div class="flex items-center gap-4">
-                              <label for="username" class="font-semibold w-24">Salle Name</label>
-                              <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="salle.nom" />
-                          </div>
-                          <div class="flex items-center gap-4">
-                              <label for="address" class="font-semibold w-24">Salle Addres</label>
-                              <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="salle.adresse" />
-                          </div>
-                          <div class="flex items-center gap-4">
-                              <label for="capacity" class="font-semibold w-24">Salle Capacite</label>
-                              <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="salle.capacite" />
-                          </div>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2">
-                            <button 
-                              (click)="editvisible = false" 
-                              class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
-                            >
-                              <i class="bx bx-x-circle"></i> Cancel
-                            </button>
-                            <button 
-                              (click)="updateSalle(salle)" 
-                              class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
-                            >
-                              <i class="bx bx-save"></i> Update
-                            </button>
-                        </div>
-                      </p-dialog>
                       </div>
                       <!-- Delete Button -->
                         <div class="flex items-center gap-2">
@@ -125,4 +89,40 @@
       </table>
     </div>
 </div>
+<p-dialog header="Update Salle" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Update salle.</span>
+  <!-- <div class="flex items-center gap-4 mb-4">
+      <label for="username" class="font-semibold w-24">Salle Name</label>
+      <input pInputText id="username" class="flex-auto" autocomplete="off"  [(ngModel)]="salle.nom"/>
+  </div> -->
+  <div class="flex flex-col gap-4 mb-4">
+    <div class="flex items-center gap-4">
+        <label for="username" class="font-semibold w-24">Salle Name</label>
+        <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedFilm.nom" />
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="address" class="font-semibold w-24">Salle Addres</label>
+        <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="selectedFilm.adresse" />
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="capacity" class="font-semibold w-24">Salle Capacite</label>
+        <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="selectedFilm.capacite" />
+    </div>
+  </div>
+  
+  <div class="flex justify-end gap-2">
+      <button 
+        (click)="editvisible = false" 
+        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
+      >
+        <i class="bx bx-x-circle"></i> Cancel
+      </button>
+      <button 
+        (click)="updateSalle(selectedFilm)" 
+        class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
+      >
+        <i class="bx bx-save"></i> Update
+      </button>
+  </div>
+</p-dialog>
 

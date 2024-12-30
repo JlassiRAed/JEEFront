@@ -21,6 +21,7 @@ export class CompteComponent {
   compteName!: string;
   password!:string;
   isPasswordVisible: boolean = false;
+  selectedCompte: Compte = { id: 0, name: '', password:'',sold:0 };   
 
 
   togglePasswordVisibility(): void {
@@ -29,7 +30,8 @@ export class CompteComponent {
   showDialog() {
     this.visible = true;
   }
-  showDialogEdit() {
+  showDialogEdit(compte:Compte) {
+    this.selectedCompte = { ...compte };
     this.editvisible = true;
   }
   showDialogRemove() {

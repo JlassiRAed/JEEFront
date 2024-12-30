@@ -8,6 +8,7 @@ import {DeleteSalleProgService} from '../services/salleprog/delete-salle-prog.se
 import { ListFilmsService } from '../services/film/list-films.service';
 import { ListSallesService } from '../services/salle/list--salles.service';
 import { PostSalleProgService } from '../services/salleprog/post-salle-prog.service';
+import { Salleprog } from './salleprog';
 
 
 @Component({
@@ -25,11 +26,13 @@ export class SalleprogComponent implements OnInit {
     selectedfilm:any;
     selectedsalle:any;
     condition:boolean=true;
+    selectedSalleProg: Salleprog = { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
   
     showDialog() {
         this.visible = true;
     }
-    showDialogEdit() {
+    showDialogEdit(salleprog: Salleprog) {
+      this.selectedSalleProg = { ...salleprog };
       this.editvisible = true;
     }
     showDialogRemove() {

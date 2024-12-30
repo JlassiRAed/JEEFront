@@ -20,11 +20,14 @@ export class SeanceComponent {
   editvisible: boolean = false;
   removevisible: boolean = false; 
   filmName!: string;
+  selectedSeance:any={};
+
 
    showDialog() {
         this.visible = true;
     }
-    showDialogEdit() {
+    showDialogEdit(seance: any) {
+      this.selectedSeance = { ...seance };
       this.editvisible = true;
     }
     showDialogRemove() {

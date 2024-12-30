@@ -19,10 +19,12 @@ export class SalleComponent {
   salleName!: string;
   salleAddress!:string;
   Sallecapacite!: number;
+  selectedFilm: Salle = { id_salle: 0, nom: '',adresse:'',capacite:0 }; 
     showDialog() {
         this.visible = true;
     }
-    showDialogEdit() {
+    showDialogEdit(salle :Salle) {
+      this.selectedFilm = { ...salle };
       this.editvisible = true;
     }
     showDialogRemove() {
