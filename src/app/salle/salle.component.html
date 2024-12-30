@@ -98,15 +98,15 @@
   <div class="flex flex-col gap-4 mb-4">
     <div class="flex items-center gap-4">
         <label for="username" class="font-semibold w-24">Salle Name</label>
-        <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedFilm.nom" />
+        <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedSalle.nom" />
     </div>
     <div class="flex items-center gap-4">
         <label for="address" class="font-semibold w-24">Salle Addres</label>
-        <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="selectedFilm.adresse" />
+        <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="selectedSalle.adresse" />
     </div>
     <div class="flex items-center gap-4">
         <label for="capacity" class="font-semibold w-24">Salle Capacite</label>
-        <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="selectedFilm.capacite" />
+        <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="selectedSalle.capacite" />
     </div>
   </div>
   
@@ -118,7 +118,7 @@
         <i class="bx bx-x-circle"></i> Cancel
       </button>
       <button 
-        (click)="updateSalle(selectedFilm)" 
+        (click)="updateSalle(selectedSalle)" 
         class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
       >
         <i class="bx bx-save"></i> Update
