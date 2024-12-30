@@ -41,6 +41,7 @@ import { ListboxModule } from 'primeng/listbox';
 //import { SelectModule } from 'primeng/select';
 
 import { CompteComponent } from './compte/compte.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -81,7 +82,8 @@ import { CompteComponent } from './compte/compte.component';
     ToastModule,
     OverlayPanelModule,
     MultiSelectModule,
-    ListboxModule
+    ListboxModule,
+    CalendarModule
 
   ],
   providers: [

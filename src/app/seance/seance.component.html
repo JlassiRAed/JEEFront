@@ -1,45 +1,46 @@
 <div class="p-6">
   <!-- Header avec bouton Ajouter -->
   <div class="flex justify-between items-center mb-4">
-    <h2 class="text-2xl font-bold">Salleprog</h2>
-    <!--<p-dialog header="Add salleprog" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <h2 class="text-2xl font-bold">Seances</h2>
+    <p-dialog header="Add Seance" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
       <span class="p-text-secondary block mb-8">Add Seance</span>
       <div class="flex items-center gap-4 mb-4">
-          <div>
-            <div *ngIf="films.length > 0">
-              <p-button (onClick)="filmPanel.toggle($event)" icon="pi pi-video" label="Films"></p-button>
-              <p-overlayPanel #filmPanel>
+          <div class="flex flex-col gap-4 mb-4">
+            <div *ngIf="salleprogs.length > 0">
+              <p-button (onClick)="salleprogPanel.toggle($event)" icon="pi pi-calendar-clock" label="Salleprog"></p-button>
+              <p-overlayPanel #salleprogPanel>
                 <div class="card flex justify-center">
                   <p-listbox
-                    [options]="films"
-                    [(ngModel)]="selectedfilm"
+                    [options]="salleprogs"
+                    [(ngModel)]="selectedSalleProg"
                     (ngModelChange)="updateCondition()"
-                    optionLabel="nom"
-                    placeholder="Select film">
+                    optionLabel="id_salleprog"
+                    placeholder="Select Salleprog"
+                    (onClick)="salleprogPanel.toggle($event)">
                   </p-listbox>
                 </div>
               </p-overlayPanel>
             </div>
-            <div *ngIf="films.length === 0">Il n'y a aucun film</div>
-          </div>
+            <div class="flex items-center gap-4">
+                <label for="username" class="font-semibold w-24">Seance horaire</label>
+                <!-- <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="crud.horaire" /> -->
+                <p-calendar 
+                [(ngModel)]="crud.horaire" 
+                dateFormat="dd.mm.yy"
+                [touchUI]="true" 
+                [readonlyInput]="true" />
+            </div>
+            <div class="flex items-center gap-4">
+                <label for="address" class="font-semibold w-24">Seances places</label>
+                <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="crud.places" />
+            </div>
+            <div class="flex items-center gap-4">
+                <label for="capacity" class="font-semibold w-24">Seance Tarif Capacite</label>
+                <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="crud.tarif" />
+            </div>
           
-          <div>
-            <div *ngIf="sal.length > 0">
-              <p-button (onClick)="sallePanel.toggle($event)" icon="pi pi-shop" label="Salles"></p-button>
-              <p-overlayPanel #sallePanel>
-                <div class="card flex justify-center">
-                  <p-listbox
-                    [options]="sal"
-                    [(ngModel)]="selectedsalle"
-                    (ngModelChange)="updateCondition()"
-                    optionLabel="nom"
-                    placeholder="Select salle">
-                  </p-listbox>
-                </div>
-              </p-overlayPanel>
-            </div>
-            <div *ngIf="sal.length === 0">Il n'y a aucune salle</div>
           </div>
+
       </div>
       <div class="flex justify-end gap-2">
           <button 
@@ -49,13 +50,13 @@
             <i class="bx bx-x-circle"></i> Cancel
           </button>
           <button 
-            (click)="addsalleprog(selectedfilm,selectedsalle)" 
+            (click)="addseance(crud.horaire,crud.places,crud.tarif,selectedSalleProg)" 
             class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2" [disabled]="condition"
           >
             <i class="bx bx-save"></i> Save
           </button>
         </div>
-  </p-dialog>-->
+  </p-dialog>
   <button (click)="showDialog()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-green-600 transition flex items-center">
       <i class="bx bx-plus mr-2"></i> Add Seance
   </button>
@@ -84,7 +85,7 @@
               <td class="px-6 py-4 border-b border-gray-200">{{ seance.places }}</td>
               <td class="px-6 py-4 border-b border-gray-200">{{ seance.horaire }}</td>
               <td class="px-6 py-4 border-b border-gray-200">{{ seance.tarif }}</td>
-              <td class="px-6 py-4 border-b border-gray-200">{{ seance.salleProg.id_salleprog }}</td>
+              <td class="px-6 py-4 border-b border-gray-200">{{ seance.salleProg?.id_salleprog }}</td>
               <td class="px-6 py-4 border-b border-gray-200">
                   <!-- Buttons aligned horizontally -->
                   <div class="flex space-x-4">
@@ -92,7 +93,7 @@
                       <div class="flex items-center gap-2">
                           <span><p-toast></p-toast>
                           <p-confirmPopup></p-confirmPopup>
-                          <button (click)="confirm2($event,seance.id_salleprog)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                          <button (click)="confirm2($event,seance.id_seance)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
                               <i class="bx bx-trash mr-2"></i> Delete
                           </button></span>
                       </div>

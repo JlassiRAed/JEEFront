@@ -9,7 +9,7 @@ export class PostSeanceService {
   private apiUrl = 'http://localhost:8080/CinemaExamen/cinemaREST/seance';
 
   constructor(private http: HttpClient) { }
-  createFilm(seance:any): Observable<any> {
+  createSeance(seance:any): Observable<any> {
     return this.http.post(this.apiUrl, seance);
   }
 }

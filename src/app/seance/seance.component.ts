@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 import { ListSeanceService } from '../services/seance/list-seance.service';
-import {DeleteSalleProgService} from '../services/salleprog/delete-salle-prog.service';
-import { ListFilmsService } from '../services/film/list-films.service';
-import { ListSallesService } from '../services/salle/list--salles.service';
-import { PostSalleProgService } from '../services/salleprog/post-salle-prog.service';
+import { PostSeanceService } from '../services/seance/post-seance.service';
+import { ListSalleProgService } from '../services/salleprog/list-salle-prog.service'; 
 import { Salleprog } from '../salleprog/salleprog';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Seance } from './seance';
+import { DeleteSeanceService } from '../services/seance/delete-seance.service';
 
 
 
@@ -16,17 +16,16 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   styleUrl: './seance.component.css'
 })
 export class SeanceComponent {
-  seances: any[]=[];
-      visible: boolean = false;
-      editvisible: boolean = false;
-      removevisible: boolean = false; 
-      films!:any[];
-      sal!:any[];
-      selectedfilm:any;
-      selectedsalle:any;
-      condition:boolean=true;
-      selectedSalleProg: Salleprog = { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
+    seances: any[]=[];
+    visible: boolean = false;
+    editvisible: boolean = false;
+    removevisible: boolean = false; 
+    salleprogs:any[]=[];
+    crud:Seance={id_seance:0,horaire:'',tarif:0,places:0, salleprog:{id_salleprog:0,film:{id_film:0,nom:''},salle:{id_salle:0,nom:'',capacite:0,adresse:''}}};
     
+    condition:boolean=true;
+    selectedSalleProg!: Salleprog //= { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
+  
       showDialog() {
           this.visible = true;
       }
@@ -37,43 +36,36 @@ export class SeanceComponent {
       showDialogRemove() {
         this.removevisible = true;}
     
-        constructor(private listseance: ListSeanceService,private deletesalleprog:DeleteSalleProgService,private confirmationService:ConfirmationService,private messageService:MessageService,private listfilmservice :ListFilmsService,private listSalleservice: ListSallesService,private postsalle:PostSalleProgService ) {}
+        constructor(private deleteseance: DeleteSeanceService,private listseance: ListSeanceService,private confirmationService:ConfirmationService,private messageService:MessageService,private listsalleprogservice :ListSalleProgService,private postseance:PostSeanceService ) {}
         loadservice() {
           this.listseance.getSeancesWithAxios().then((data) => {
-            this.seances = data; // Liste de seances
+            this.seances = data; 
             console.log('Salles programmées (salleprog):', this.seances);
-        
-            // Charger les salles et filtrer celles qui ne sont pas dans salles (salleprog)
-            this.listSalleservice.getSallesWithAxios().then((data) => {
-              this.sal = data.filter((salle) => 
-                !this.seances.some((salleProg) => salleProg.salle.id_salle === salle.id_salle)
-              );
-              console.log('Salles disponibles non programmées :', this.sal);
-            }).catch((error) => {
-              console.error('Erreur lors du chargement des salles :', error);
-            });
           }).catch((error) => {
             console.error('Erreur lors du chargement des salles programmées :', error);
           });
         
-          this.listfilmservice.getFilmsWithAxios().then((data) => {
-            this.films = data;
-            console.log(this.films);
+          this.listsalleprogservice.getSalleProgsWithAxios().then((data) => {
+            this.salleprogs = data;
+            console.log(this.salleprogs);
         });
       }
       updateCondition() {
-        this.condition = (this.selectedfilm==null || this.selectedsalle==null);
+        this.condition = (this.selectedSalleProg==null);
       }
     
         ngOnInit() {
           this.loadservice();
         }
+
+        
     
-        addsalleprog(film: any,salle:any) {
-          
-          this.postsalle.createSalleProg({film:film,salle:salle}).subscribe({
-            next: (response) => console.log('Film créé avec succès :', response),
-            error: (error) => console.error('Erreur lors de la création du film :', error),
+        addseance(horaire: string, places: number, tarif: number, salleprog: Salleprog) {
+          console.log({horaire:horaire,tarif:tarif,places:places, salleprog:salleprog});
+          debugger;
+          this.postseance.createSeance({horaire:horaire,tarif:tarif,places:places, salleprog:salleprog}).subscribe({
+            next: (response) => console.log('seance créé avec succès :', response),
+            error: (error) => console.error('seance lors de la création du film :', error),
           });
           this.visible = false
           this.loadservice();
@@ -90,13 +82,13 @@ export class SeanceComponent {
             message: 'Are you sure you want to delete this salleProg?',
             icon: 'pi pi-exclamation-circle',
             accept: () => {
-              this.deletesalleprog.deleteSalleProg(id).subscribe({
+              this.deleteseance.deleteSeance(id).subscribe({
                 next: (response) => {
                   console.log('Film supprimé avec succès', response);
                   this.messageService.add({
                     severity: 'success',
                     summary: 'Deleted',
-                    detail: 'Film has been deleted successfully.',
+                    detail: 'seance has been deleted successfully.',
                     life: 2000,
                   })
                   this.delay(3000);
@@ -104,11 +96,11 @@ export class SeanceComponent {
                   window.location.reload();
                 },
                 error: (err) => {
-                  console.error('Erreur lors de la suppression du film', err);
+                  console.error('Erreur lors de la suppression du seance', err);
                   this.messageService.add({
                     severity: 'error',
                     summary: 'Error',
-                    detail: 'An error occurred while deleting the film.',
+                    detail: 'An error occurred while deleting the seance.',
                     life: 3000,
                   });
                 }

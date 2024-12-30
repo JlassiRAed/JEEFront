@@ -15,7 +15,8 @@
                       [(ngModel)]="selectedfilm"
                       (ngModelChange)="updateCondition()"
                       optionLabel="nom"
-                      placeholder="Select film">
+                      placeholder="Select film"
+                      (onClick)="filmPanel.toggle($event)">
                     </p-listbox>
                   </div>
                 </p-overlayPanel>
@@ -33,7 +34,8 @@
                       [(ngModel)]="selectedsalle"
                       (ngModelChange)="updateCondition()"
                       optionLabel="nom"
-                      placeholder="Select salle">
+                      placeholder="Select salle"
+                      (onClick)="sallePanel.toggle($event)">
                     </p-listbox>
                   </div>
                 </p-overlayPanel>
