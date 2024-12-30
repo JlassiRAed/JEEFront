@@ -6,6 +6,7 @@ import { PutCompteService } from '../services/compte/put-compte.service';
 import { DeleteCompteService } from '../services/compte/delete-film.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { response } from 'express';
+import { PutDebiteService } from '../services/compte/put-debite.service';
 
 @Component({
   selector: 'app-compte',
@@ -22,9 +23,9 @@ export class CompteComponent {
   password!: string;
   isPasswordVisible: boolean = false;
   selectedCompte: Compte = { id: 0, name: '', password: '', solde: 0 };
-  debiterVisibilty:boolean=false;
-  montant:number=0;
-  passwordAverfier!:string;
+  debiterVisibilty: boolean = false;
+  montant: number = 0;
+  passwordAverfier!: string;
   togglePasswordVisibility(): void {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
@@ -38,11 +39,11 @@ export class CompteComponent {
   showDialogRemove() {
     this.removevisible = true;
   }
-  showDialogDebiter(compte:Compte) {
+  showDialogDebiter(compte: Compte) {
     this.selectedCompte = { ...compte };
     this.debiterVisibilty = true;
   }
-  constructor(private listCompteservice: ListComptesService, private postCompte: PostCompteService, private putCompte: PutCompteService, private deleteCompte: DeleteCompteService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
+  constructor(private listCompteservice: ListComptesService, private postCompte: PostCompteService, private putCompte: PutCompteService, private deleteCompte: DeleteCompteService, private confirmationService: ConfirmationService, private messageService: MessageService,private debiterService:PutDebiteService ) { }
   loadservice() {
     this.listCompteservice.getCompteWithAxios().then((data) => {
       this.comptes = data;
@@ -124,32 +125,45 @@ export class CompteComponent {
       }
     });
   }
-debite( ){
-  console.log(typeof this.selectedCompte.password);
-  console.log(typeof this.passwordAverfier);
-  if (this.montant > 0 &&  this.passwordAverfier === this.selectedCompte.password) {
-     const c1=this.comptes.find(c => c.id === this.selectedCompte.id );
-    if(c1){
-      c1.solde+=this.montant;
-    }
-    else{
-      console.log("compte not found")
-    }
-    
-  } else {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Échec',
-      detail: 'Montant invalide ou mot de passe incorrect.',
-      life: 2000,
-    })
-    console.log('Échec : montant invalide ou mot de passe incorrect.');
-  }
-this.debiterVisibilty=false;
-this.montant=0;
-this.passwordAverfier="";
+  debite() {
+    // console.log(typeof this.selectedCompte.password);
+    // console.log(typeof this.passwordAverfier);
+    if (this.montant > 0 && this.passwordAverfier === this.selectedCompte.password) {
+      const c1 = this.comptes.find(c => c.id === this.selectedCompte.id);
+      if (c1) {
+        let str: string =this.montant.toString();
+        const newCompte = { name: c1.name, password: c1.password,montant:str}
+        this.debiterService.debiter(newCompte).subscribe({
+          next: (response) => {
+            console.log('Compte mis à jour avec succès', response);
+            this.loadservice();
+            window.location.reload();
+          },
+          error: (err) => {
+            console.error('Erreur lors de la mise à jour du Compte', err);
+          }
+        });
+        //c1.solde += this.montant;
+      }
+      else {
+        console.log("compte not found")
+      }
 
-}
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Échec',
+        detail: 'Montant invalide ou mot de passe incorrect.',
+        life: 2000,
+      })
+      console.log('Échec : montant invalide ou mot de passe incorrect.');
+    }
+    this.debiterVisibilty = false;
+    this.montant = 0;
+    this.passwordAverfier = "";
+
+  }
+  
 
 
 }
