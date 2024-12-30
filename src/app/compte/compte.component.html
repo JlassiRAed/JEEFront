@@ -96,13 +96,12 @@
                             </button></span>
                         </div>
                         <!-- Delete Button -->
-                        <div class="flex items-center gap-2">
-                          <span><p-toast></p-toast>
-                          <p-confirmPopup></p-confirmPopup>
-                          <button (click)="confirm2($event,compte.id)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
-                              <i class="bx bx-trash mr-2"></i> Debiter argent
-                          </button></span>
-                      </div>
+                        <div>
+                          <button (click)="showDialogDebiter(compte)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                            <i class="bx bx-edit mr-2"></i> Debiter
+                          </button>
+                          
+                          </div>
                       
                     </div>
                 </td>
@@ -112,7 +111,7 @@
     </div>
 </div>
 
-<p-dialog header="Update Salle" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
+<p-dialog header="Update Compte" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
   <span class="p-text-secondary block mb-8">Update compte.</span>
   <div class="flex flex-col gap-4 mb-4">
     <div class="flex items-center gap-4">
@@ -139,7 +138,6 @@
       </div>
     </div>
   </div>
-  
   <div class="flex justify-end gap-2">
       <button 
         (click)="editvisible = false" 
@@ -152,6 +150,54 @@
         class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
       >
         <i class="bx bx-save"></i> Update
+      </button>
+      
+  </div>
+</p-dialog>
+<!-- debiter dialogue compte  -->
+<p-dialog header="Debiter argent" [modal]="true" [(visible)]="debiterVisibilty" [style]="{ width: '25rem' }">
+  <!-- <span class="p-text-secondary block mb-8">donner le password .</span> -->
+  <div class="flex flex-col gap-4 mb-4">
+    <div class="flex items-center gap-4">
+        <label for="username" class="font-semibold w-24">Compte nom : {{selectedCompte.name}}</label>
+        <!-- <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedCompte.name"/> -->
+    </div>
+    <div class="flex items-center gap-4">
+      <label for="username" class="font-semibold w-24">montant a debiter </label>
+      <input pInputText id="username"  type="number" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="montant"/>
+  </div>
+    <div class="flex items-center gap-4">
+      <label for="password" class="font-semibold w-24">Password</label>
+      <div class="relative flex-auto">
+        <input
+          [type]="isPasswordVisible ? 'text' : 'password'"
+          id="password"
+          class="flex-auto w-full custom-outline"
+          autocomplete="off"
+          [(ngModel)]="passwordAverfier " 
+        />
+        <button
+          type="button"
+          (click)="togglePasswordVisibility()"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600"
+        >
+          <i [class]="isPasswordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-end gap-2">
+      <button 
+        (click)="debiterVisibilty = false" 
+        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
+      >
+        <i class="bx bx-x-circle"></i> Cancel
+      </button>
+      <button 
+        (click)="debite()" 
+        class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
+      >
+        <i class="bx bx-save"></i> Debiter
       </button>
       
   </div>
