@@ -24,7 +24,7 @@ export class SeanceComponent {
     crud:Seance={id_seance:0,horaire:'',tarif:0,places:0, salleprog:{id_salleprog:0,film:{id_film:0,nom:''},salle:{id_salle:0,nom:'',capacite:0,adresse:''}}};
     
     condition:boolean=true;
-    selectedSalleProg!: Salleprog //= { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
+    selectedSalleProg!: any //= { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
   
       showDialog() {
           this.visible = true;
@@ -60,10 +60,10 @@ export class SeanceComponent {
 
         
     
-        addseance(horaire: string, places: number, tarif: number, salleprog: Salleprog) {
-          console.log({horaire:horaire,tarif:tarif,places:places, salleprog:salleprog});
+        addseance(horaire: string, places: number, tarif: number, salleprog: any) {
+          console.log({horaire:horaire,tarif:tarif,places:places, salleProg:salleprog});
           debugger;
-          this.postseance.createSeance({horaire:horaire,tarif:tarif,places:places, salleprog:salleprog}).subscribe({
+          this.postseance.createSeance({horaire:horaire,tarif:tarif,places:places, salleProg:salleprog}).subscribe({
             next: (response) => console.log('seance créé avec succès :', response),
             error: (error) => console.error('seance lors de la création du film :', error),
           });
