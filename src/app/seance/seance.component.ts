@@ -7,6 +7,7 @@ import { Salleprog } from '../salleprog/salleprog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Seance } from './seance';
 import { DeleteSeanceService } from '../services/seance/delete-seance.service';
+import { PutSeanceService } from '../services/seance/put-seance.service';
 
 
 
@@ -25,18 +26,18 @@ export class SeanceComponent {
     
     condition:boolean=true;
     selectedSalleProg!: any //= { id_salleprog: 0, film: { id_film: 0, nom: '' }, salle: { id_salle: 0, nom: '',capacite:0,adresse:'' } };
-  
+    selectedseance:Seance=this.crud;
       showDialog() {
           this.visible = true;
       }
-      showDialogEdit(salleprog: Salleprog) {
-        this.selectedSalleProg = { ...salleprog };
+      showDialogEdit(seance: Seance) {
+        this.selectedseance = { ...seance };
         this.editvisible = true;
       }
       showDialogRemove() {
         this.removevisible = true;}
     
-        constructor(private deleteseance: DeleteSeanceService,private listseance: ListSeanceService,private confirmationService:ConfirmationService,private messageService:MessageService,private listsalleprogservice :ListSalleProgService,private postseance:PostSeanceService ) {}
+        constructor(private putseance :PutSeanceService,private deleteseance: DeleteSeanceService,private listseance: ListSeanceService,private confirmationService:ConfirmationService,private messageService:MessageService,private listsalleprogservice :ListSalleProgService,private postseance:PostSeanceService ) {}
         loadservice() {
           this.listseance.getSeancesWithAxios().then((data) => {
             this.seances = data; 
@@ -57,6 +58,19 @@ export class SeanceComponent {
         ngOnInit() {
           this.loadservice();
         }
+        updateSalle(seance:Seance){this.putseance.updateSeance(this.selectedseance).subscribe({
+          next: (response) => {
+            console.log('salle mis à jour avec succès', response);
+            this.editvisible = false;
+            this.loadservice();
+            window.location.reload();
+          },
+          error: (err) => {
+            console.error('Erreur lors de la mise à jour du salle', err);
+          }
+        });
+        
+      }
 
         
     

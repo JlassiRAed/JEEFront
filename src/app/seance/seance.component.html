@@ -89,6 +89,11 @@
               <td class="px-6 py-4 border-b border-gray-200">
                   <!-- Buttons aligned horizontally -->
                   <div class="flex space-x-4">
+                    <div>
+                      <button (click)="showDialogEdit(seance)"  class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center">
+                        <i class="bx bx-edit mr-2"></i> Edit
+                      </button>
+                      </div>
                     <!-- Delete Button -->
                       <div class="flex items-center gap-2">
                           <span><p-toast></p-toast>
@@ -105,5 +110,47 @@
     </table>
   </div>
 </div>
+<p-dialog header="Update Seance" [modal]="true" [(visible)]="editvisible" [style]="{ width: '25rem' }">
+  <span class="p-text-secondary block mb-8">Update Seance.</span>
+  <!-- <div class="flex items-center gap-4 mb-4">
+      <label for="username" class="font-semibold w-24">Salle Name</label>
+      <input pInputText id="username" class="flex-auto" autocomplete="off"  [(ngModel)]="salle.nom"/>
+  </div> -->
+  <div class="flex flex-col gap-4 mb-4">
+    <div class="flex items-center gap-4">
+        <label for="username" class="font-semibold w-24">Seance Nombre des places</label>
+        <input pInputText id="username" class="flex-auto custom-outline" autocomplete="off" [(ngModel)]="selectedseance.places" />
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="address" class="font-semibold w-24">Seance Horaire</label>
+        <input pInputText id="address" class="flex-auto" autocomplete="off" [(ngModel)]="selectedseance.horaire" />
+        <!-- <p-calendar 
+        [(ngModel)]="selectedseance.horaire" 
+        dateFormat="dd.mm.yy"
+        [touchUI]="true" 
+        [readonlyInput]="true" /> -->
+    </div>
+    <div class="flex items-center gap-4">
+        <label for="capacity" class="font-semibold w-24">Seance Tarif</label>
+        <input pInputText id="capacity" class="flex-auto" autocomplete="off" [(ngModel)]="selectedseance.tarif" />
+    </div>
+  </div>
+  
+  <div class="flex justify-end gap-2">
+      <button 
+        (click)="editvisible = false" 
+        class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition flex items-center gap-2"
+      >
+        <i class="bx bx-x-circle"></i> Cancel
+      </button>
+      <button 
+        (click)="updateSalle(selectedseance)" 
+        class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition flex items-center gap-2"
+      >
+        <i class="bx bx-save"></i> Update
+      </button>
+  </div>
+</p-dialog>
+
 
 
