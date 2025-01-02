@@ -23,7 +23,7 @@ export class ListSeanceService {
       //console.log('Récupération des films avec Axios', response.data);
       return response.data;
     } catch (error) {
-      console.error('Erreur lors de la récupération des films avec Axios', error);
+      console.error('Erreur lors de la récupération des seances avec Axios', error);
       throw error;
     }
   }
