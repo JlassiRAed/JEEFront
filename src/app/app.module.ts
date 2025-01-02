@@ -42,6 +42,7 @@ import { ListboxModule } from 'primeng/listbox';
 
 import { CompteComponent } from './compte/compte.component';
 import { CalendarModule } from 'primeng/calendar';
+import { ReserverComponent } from './reserver/reserver.component';
 
 
 
@@ -58,7 +59,8 @@ import { CalendarModule } from 'primeng/calendar';
     SeanceComponent,
     SalleComponent,
     SalleprogComponent,
-    CompteComponent
+    CompteComponent,
+    ReserverComponent
   ],
   imports: [
     BrowserModule,

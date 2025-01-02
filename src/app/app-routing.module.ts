@@ -11,20 +11,21 @@ import { SalleComponent } from './salle/salle.component';
 
 import { SalleprogComponent } from './salleprog/salleprog.component';
 import { CompteComponent } from './compte/compte.component';
+import { ReserverComponent } from './reserver/reserver.component'; 
+import { AuthGuardService } from './services/authentification/auth-guard.service' 
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: "Home" },
   { path: 'about', component:AboutComponent , title: "about" },
-  { path: 'films', component:FilmsComponent , title: "films" },
-  { path: 'seances', component:SeanceComponent , title: "seances" },
+  { path: 'films', component:FilmsComponent , title: "films", canActivate:[AuthGuardService] },
+  { path: 'seances', component:SeanceComponent , title: "seances",canActivate:[AuthGuardService] },
   { path: 'contact', component:ContactComponent , title: "contact" },
-  { path: 'salle', component:SalleComponent , title: "salle" },
-
-  { path: 'salleprog', component:SalleprogComponent , title: "salleProg" },
-
-  { path: 'compte', component:CompteComponent , title: "compte" },
-
+  { path: 'salle', component:SalleComponent , title: "salle",canActivate:[AuthGuardService] },
+  { path: 'salleprog', component:SalleprogComponent , title: "salleProg",canActivate:[AuthGuardService] },
+  { path: 'reserver', component:ReserverComponent , title: "Reserver" },
+  { path: 'compte', component:CompteComponent , title: "compte",canActivate:[AuthGuardService] },
   { path: 'notfound', component:NotfoundComponent , title: "404" },
   { path: '**', component: NotfoundComponent, title: "404" },
   
